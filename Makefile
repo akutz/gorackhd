@@ -21,9 +21,9 @@ COVER_OUT := cover.out
 
 all: install
 
-deps: $(CLIENT_BINDINGS) $(GO_GET)
+deps: $(CLIENT_BINDINGS) $(GLIDE_LOCK) $(GO_GET)
 
-$(GO_GET): | $(GLIDE_LOCK)
+$(GO_GET): | $(GLIDE_LOCK) $(CLIENT_BINDINGS)
 	go get -d $$($(GLIDE) nv) && touch $@
 
 $(GLIDE_LOCK): $(GLIDE_YAML) | $(GLIDE) $(CLIENT_BINDINGS)
